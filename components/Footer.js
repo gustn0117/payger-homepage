@@ -10,11 +10,15 @@ export default function Footer() {
           <div className="flex items-center mb-4">
             <img src="/logo.png" alt="Payger" className="h-7" />
           </div>
-          <p className="text-sm text-text-muted leading-relaxed">
+          <p className="text-sm text-text-muted leading-relaxed mb-4">
             유통·물류 전문 결제 솔루션
             <br />
             안전하고 편리한 차세대 결제 플랫폼
           </p>
+          <div className="flex flex-col gap-2">
+            <a href="mailto:overwrap0@gmail.com" className="text-sm text-text-muted hover:text-text-main transition-colors">overwrap0@gmail.com</a>
+            <a href="tel:032-217-9500" className="text-sm text-text-muted hover:text-text-main transition-colors">032-217-9500</a>
+          </div>
         </div>
 
         {/* Links */}
