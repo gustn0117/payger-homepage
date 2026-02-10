@@ -35,10 +35,6 @@ export default function Contact() {
               <br />
               지금 바로 상담을 신청하세요.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <button className="btn-primary text-base">📩 상담 신청하기</button>
-              <button className="btn-outline text-base">📄 서비스 소개서 다운로드</button>
-            </div>
           </div>
         </div>
       </div>
