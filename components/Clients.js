@@ -27,7 +27,7 @@ const clients = [
     ),
     color: "rgba(59, 130, 246, 0.1)",
     border: "rgba(59, 130, 246, 0.2)",
-    image: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1686632800715-b705ba1b0eb6?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "유통·물류업",
