@@ -10,7 +10,7 @@ const services = [
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <defs><linearGradient id="svc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
+        <defs><linearGradient id="svc1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" />
       </svg>
     ),
@@ -22,7 +22,7 @@ const services = [
     image: "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <defs><linearGradient id="svc2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
+        <defs><linearGradient id="svc2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" />
       </svg>
     ),
@@ -34,7 +34,7 @@ const services = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <defs><linearGradient id="svc3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
+        <defs><linearGradient id="svc3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
       </svg>
     ),
@@ -49,7 +49,7 @@ export default function Services() {
       <div className="max-w-[1200px] mx-auto">
         <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
           <div className="section-tag">핵심 서비스</div>
-          <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight">
+          <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             스마트한 결제, <span className="text-gradient">간편한 관리</span>
           </h2>
         </div>
@@ -58,7 +58,7 @@ export default function Services() {
           {services.map((service, i) => (
             <div
               key={i}
-              className="card-hover bg-dark-card rounded-[20px] relative overflow-hidden"
+              className="card-hover bg-white rounded-[20px] relative overflow-hidden"
             >
               {/* Card Image */}
               <div className="relative h-[180px] overflow-hidden">
@@ -67,16 +67,16 @@ export default function Services() {
                   alt={service.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(18,18,26,0) 0%, rgba(18,18,26,0.6) 60%, #12121a 100%)" }} />
-                <div className="absolute top-4 right-4 text-[11px] font-bold tracking-widest text-white/50">
+                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 60%, #ffffff 100%)" }} />
+                <div className="absolute top-4 right-4 text-[11px] font-bold tracking-widest text-white/70 bg-black/20 px-2 py-1 rounded">
                   {service.tag}
                 </div>
               </div>
               <div className="px-10 pb-10 pt-2">
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(59,130,246,0.08)" }}>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.1)" }}>
                   {service.icon}
                 </div>
-                <h3 className="text-[22px] font-bold mb-3">{service.title}</h3>
+                <h3 className="text-[22px] font-bold mb-3 text-text-main">{service.title}</h3>
                 <p className="text-[15px] leading-relaxed text-text-muted">{service.desc}</p>
               </div>
             </div>
