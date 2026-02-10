@@ -31,15 +31,10 @@ export default function Navbar() {
       >
         {/* Logo */}
         <div
-          className="flex items-center gap-2.5 cursor-pointer"
+          className="flex items-center cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-primary to-accent flex items-center justify-center font-display font-extrabold text-lg text-white">
-            P
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight">
-            Payger
-          </span>
+          <img src="/logo.png" alt="Payger" className="h-8" />
         </div>
 
         {/* Desktop Nav */}

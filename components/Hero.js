@@ -7,6 +7,16 @@ export default function Hero() {
 
   return (
     <section className="grid-pattern min-h-screen flex items-center justify-center relative overflow-hidden pt-[120px] pb-20 px-6">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.92) 50%, rgba(10,10,15,0.98) 100%)" }} />
+      </div>
+
       {/* Orbs */}
       <div
         className="hero-gradient-orb"

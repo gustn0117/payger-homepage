@@ -16,6 +16,15 @@ export default function Contact() {
             border: "1px solid rgba(59,130,246,0.15)",
           }}
         >
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0 rounded-[32px] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80"
+              alt=""
+              className="w-full h-full object-cover opacity-[0.12]"
+            />
+          </div>
+
           {/* Decorative orbs */}
           <div
             className="absolute -top-[100px] -right-[100px] w-[300px] h-[300px] rounded-full"

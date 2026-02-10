@@ -7,11 +7,8 @@ export default function Footer() {
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center font-display font-extrabold text-base text-white">
-              P
-            </div>
-            <span className="font-display font-bold text-lg">Payger</span>
+          <div className="flex items-center mb-4">
+            <img src="/logo.png" alt="Payger" className="h-7" />
           </div>
           <p className="text-sm text-text-muted leading-relaxed">
             유통·물류 전문 결제 솔루션
