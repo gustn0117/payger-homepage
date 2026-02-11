@@ -22,7 +22,7 @@ const models = [
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#bm2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="bm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06d6a0" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
-        <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
+        <path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20V14" />
       </svg>
     ),
     accentColor: "#06d6a0",
