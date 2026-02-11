@@ -276,84 +276,34 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Stats & Visual Cards */}
+          {/* Right - Service Overview Cards */}
           <div
             className="flex-shrink-0 w-full lg:w-[440px]"
             style={{ animation: "fadeUp 1s ease 0.7s both" }}
           >
-            {/* Stats Cards */}
             <div className="grid grid-cols-1 gap-4">
-              {/* Main stat card */}
-              <div
-                className="p-7 rounded-2xl relative overflow-hidden"
-                style={{
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  backdropFilter: "blur(16px)",
-                }}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold text-white/40 tracking-widest uppercase">실시간 처리량</span>
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-accent animate-ping opacity-40" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
-                  </span>
-                </div>
-                <CountUpStat value={99} suffix=".9%" label={"서비스\n안정성"} delay={0} />
-                <div className="mt-4 h-[2px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-                  <div className="h-full rounded-full" style={{ width: "99.9%", background: "linear-gradient(90deg, #06d6a0, #5CA8D2)" }} />
-                </div>
-              </div>
-
-              {/* Two smaller stat cards */}
-              <div className="grid grid-cols-2 gap-4">
+              {/* Service cards */}
+              {[
+                { icon: "📱", title: "모바일 결제", desc: "스마트폰으로 언제 어디서나 빠르고 안전한 결제" },
+                { icon: "💳", title: "통합 카드 결제", desc: "다양한 카드사와 연동된 편리한 통합 결제 시스템" },
+                { icon: "🤖", title: "AI 스마트 솔루션", desc: "AI 기반 맞춤형 추천 및 효율적 관리" },
+              ].map((item, i) => (
                 <div
-                  className="p-6 rounded-2xl"
+                  key={i}
+                  className="p-6 rounded-2xl flex items-start gap-4"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    backdropFilter: "blur(12px)",
+                    background: "rgba(255,255,255,0.08)",
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    backdropFilter: "blur(16px)",
                   }}
                 >
-                  <div className="text-xs font-medium text-white/35 tracking-wider mb-3 uppercase">결제 속도</div>
-                  <div className="stat-number text-white" style={{ fontSize: 36 }}>
-                    0.5<span className="text-white/60 text-lg">초</span>
+                  <span className="text-2xl shrink-0">{item.icon}</span>
+                  <div>
+                    <div className="text-sm font-bold text-white mb-1">{item.title}</div>
+                    <div className="text-xs text-white/50 leading-relaxed">{item.desc}</div>
                   </div>
-                  <div className="text-xs text-white/40 mt-1">평균 처리 시간</div>
                 </div>
-                <div
-                  className="p-6 rounded-2xl"
-                  style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    backdropFilter: "blur(12px)",
-                  }}
-                >
-                  <div className="text-xs font-medium text-white/35 tracking-wider mb-3 uppercase">기술 지원</div>
-                  <div className="stat-number text-white" style={{ fontSize: 36 }}>
-                    24<span className="text-white/60 text-lg">/7</span>
-                  </div>
-                  <div className="text-xs text-white/40 mt-1">연중무휴 지원</div>
-                </div>
-              </div>
-
-              {/* Trust badges */}
-              <div
-                className="flex items-center gap-6 p-5 rounded-2xl"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                {["PCI DSS 인증", "ISO 27001", "금융보안원"].map((badge, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(6,214,160,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    <span className="text-[11px] text-white/45 font-medium">{badge}</span>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
