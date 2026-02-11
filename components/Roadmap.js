@@ -5,8 +5,7 @@ import { useInView, useStaggeredInView } from "./hooks";
 
 const roadmapSteps = [
   {
-    phase: "Phase 1", title: "시장 진입", items: ["핵심 서비스 출시", "초기 사용자 확보"],
-    period: "2025 Q1-Q2",
+    phase: "1단계", title: "시장 진입", items: ["핵심 서비스 출시", "초기 사용자 확보"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
@@ -15,8 +14,7 @@ const roadmapSteps = [
     ),
   },
   {
-    phase: "Phase 2", title: "성장", items: ["제휴 가맹점 확대", "사용자 기반 강화"],
-    period: "2025 Q3-Q4",
+    phase: "2단계", title: "성장", items: ["제휴 가맹점 확대", "사용자 기반 강화"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
@@ -25,8 +23,7 @@ const roadmapSteps = [
     ),
   },
   {
-    phase: "Phase 3", title: "확장", items: ["신규 서비스 론칭", "해외 진출 준비"],
-    period: "2026 Q1-Q2",
+    phase: "3단계", title: "확장", items: ["신규 서비스 론칭", "해외 진출 준비"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
@@ -35,8 +32,7 @@ const roadmapSteps = [
     ),
   },
   {
-    phase: "Phase 4", title: "글로벌", items: ["해외 시장 진출", "글로벌 플랫폼 구축"],
-    period: "2026 Q3~",
+    phase: "4단계", title: "글로벌", items: ["해외 시장 진출", "글로벌 플랫폼 구축"],
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06d6a0" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
@@ -113,7 +109,6 @@ export default function Roadmap() {
                           </div>
                         ))}
                       </div>
-                      <div className={`text-[11px] text-text-muted/60 font-medium mt-3 ${isLeft ? "text-right" : "text-left"}`}>{step.period}</div>
                     </div>
                   </div>
 
@@ -153,7 +148,6 @@ export default function Roadmap() {
                         </div>
                       ))}
                     </div>
-                    <div className="text-[11px] text-text-muted/60 font-medium mt-3">{step.period}</div>
                   </div>
                 </div>
               );

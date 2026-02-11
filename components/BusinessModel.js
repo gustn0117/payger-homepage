@@ -6,7 +6,7 @@ const models = [
   {
     title: "결제 수수료",
     desc: "거래액 기반 합리적인 수수료 구조로 가맹점 및 사용자 모두에게 혜택을 제공합니다.",
-    features: ["투명한 수수료 체계", "거래량 기반 할인"],
+    features: [],
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#bm1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="bm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
@@ -18,7 +18,7 @@ const models = [
   {
     title: "부가 서비스",
     desc: "데이터 분석, 마케팅 솔루션, 기업 맞춤형 통합 서비스를 제공합니다.",
-    features: ["AI 기반 데이터 인사이트", "맞춤형 마케팅 도구"],
+    features: [],
     icon: (
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20V14" />
@@ -70,20 +70,22 @@ export default function BusinessModel() {
                     {item.icon}
                   </div>
                   <h3 className="text-[24px] font-bold mb-3 text-text-main">{item.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-text-muted mb-8">{item.desc}</p>
+                  <p className="text-[15px] leading-relaxed text-text-muted">{item.desc}</p>
 
-                  <div className="flex flex-col gap-3">
-                    {item.features.map((f, j) => (
-                      <div key={j} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: `${item.accentColor}15` }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={item.accentColor} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
+                  {item.features.length > 0 && (
+                    <div className="flex flex-col gap-3 mt-8">
+                      {item.features.map((f, j) => (
+                        <div key={j} className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: `${item.accentColor}15` }}>
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={item.accentColor} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          </div>
+                          <span className="text-sm text-text-muted font-medium">{f}</span>
                         </div>
-                        <span className="text-sm text-text-muted font-medium">{f}</span>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             );

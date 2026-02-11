@@ -99,21 +99,8 @@ export default function Contact() {
                 <div className="relative z-10">
                   <div className="text-lg font-bold text-white mb-2">무료 상담 신청</div>
                   <p className="text-sm text-white/50 mb-8">
-                    전문 컨설턴트가 귀사에 맞는 최적의 결제 솔루션을 안내해 드립니다.
+                    지금 바로 상담을 신청하세요.
                   </p>
-
-                  <div className="flex flex-col gap-4 mb-8">
-                    {["맞춤형 결제 시스템 설계", "합리적인 수수료 안내", "기존 시스템 연동 컨설팅"].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ background: "rgba(6,214,160,0.2)" }}>
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                        </div>
-                        <span className="text-sm text-white/70">{item}</span>
-                      </div>
-                    ))}
-                  </div>
 
                   <button
                     className="btn-hero w-full text-center justify-center"

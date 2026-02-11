@@ -63,21 +63,7 @@ export default function Advantages() {
             </h2>
             <p className="text-text-muted mt-5 text-[15px] leading-relaxed">
               차별화된 기술력으로 결제의 새로운 기준을 제시합니다.
-              유통·물류 전문 핀테크 기업으로서 축적된 노하우를 바탕으로 최적의 솔루션을 제공합니다.
             </p>
-            <div className="mt-8 hidden lg:block">
-              <div
-                className="inline-flex items-center gap-3 text-sm font-semibold"
-                style={{ color: "var(--primary)" }}
-              >
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(92,168,210,0.1)" }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </div>
-                자세히 알아보기
-              </div>
-            </div>
           </div>
 
           {/* Right - 2x2 Grid */}
