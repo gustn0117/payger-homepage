@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useScrollY } from "./hooks";
+import { useState, useMemo } from "react";
+import { useScrollY, useActiveSection } from "./hooks";
 
 const navItems = [
   { label: "서비스", id: "services" },
@@ -15,6 +15,8 @@ const navItems = [
 export default function Navbar() {
   const scrollY = useScrollY();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const sectionIds = useMemo(() => navItems.map((n) => n.id), []);
+  const activeSection = useActiveSection(sectionIds);
 
   const isScrolled = scrollY > 50;
 
@@ -50,18 +52,27 @@ export default function Navbar() {
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className={`bg-transparent border-none text-sm font-medium cursor-pointer transition-colors duration-200 py-2 ${
-                isScrolled ? "nav-link-scrolled" : "nav-link-hero"
+              className={`bg-transparent border-none text-sm font-medium cursor-pointer transition-all duration-200 py-2 relative ${
+                isScrolled
+                  ? activeSection === item.id
+                    ? "nav-link-active"
+                    : "nav-link-scrolled"
+                  : activeSection === item.id
+                    ? "text-white"
+                    : "nav-link-hero"
               }`}
             >
               {item.label}
             </button>
           ))}
           <button
-            className="py-2.5 px-6 text-sm rounded-full font-semibold cursor-pointer transition-all duration-300 border-none text-white"
+            className="py-2.5 px-6 text-sm rounded-full font-semibold cursor-pointer transition-all duration-300 border-none text-white hover:-translate-y-0.5"
             style={{
-              background: isScrolled ? "var(--primary)" : "rgba(255,255,255,0.15)",
+              background: isScrolled
+                ? "linear-gradient(135deg, #5CA8D2, #06d6a0)"
+                : "rgba(255,255,255,0.15)",
               border: isScrolled ? "none" : "1px solid rgba(255,255,255,0.3)",
+              boxShadow: isScrolled ? "0 4px 16px rgba(92,168,210,0.3)" : "none",
             }}
             onClick={() => scrollTo("contact")}
           >
@@ -72,8 +83,11 @@ export default function Navbar() {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="mobile-toggle bg-transparent border-none text-2xl cursor-pointer"
-          style={{ color: isScrolled ? "#1e293b" : "#ffffff" }}
+          className="mobile-toggle bg-transparent border-none text-2xl cursor-pointer transition-transform duration-200"
+          style={{
+            color: isScrolled ? "#1e293b" : "#ffffff",
+            transform: mobileMenuOpen ? "rotate(90deg)" : "rotate(0deg)",
+          }}
         >
           {mobileMenuOpen ? "✕" : "☰"}
         </button>
@@ -82,17 +96,22 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div
-          className="mobile-menu py-5 px-6 flex flex-col gap-4"
+          className="mobile-menu py-5 px-6 flex flex-col gap-1"
           style={{
             borderTop: "1px solid rgba(0,0,0,0.06)",
             background: "white",
+            animation: "fadeUp 0.3s ease",
           }}
         >
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollTo(item.id)}
-              className="bg-transparent border-none text-text-main text-base cursor-pointer text-left py-2"
+              className="bg-transparent border-none text-base cursor-pointer text-left py-3 px-4 rounded-xl transition-all duration-200 hover:bg-surface-blue"
+              style={{
+                color: activeSection === item.id ? "var(--primary)" : "#1e293b",
+                fontWeight: activeSection === item.id ? 600 : 400,
+              }}
             >
               {item.label}
             </button>

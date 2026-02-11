@@ -58,6 +58,37 @@ export default function Roadmap() {
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             글로벌을 향한 <span className="text-gradient">여정</span>
           </h2>
+          <p className="text-text-muted mt-4 max-w-[480px] mx-auto text-[15px] leading-relaxed">
+            단계적 성장 전략으로 글로벌 결제 플랫폼을 향해 나아갑니다
+          </p>
+        </div>
+
+        {/* Timeline Dots (Desktop) */}
+        <div className="hidden lg:block relative mb-8">
+          <div className="absolute top-[7px] left-[12.5%] right-[12.5%] h-[2px]" style={{ background: "rgba(92,168,210,0.12)" }}>
+            <div
+              className="h-full rounded-sm"
+              style={{
+                background: "linear-gradient(90deg, #5CA8D2, #06d6a0)",
+                width: `${((active + 1) / roadmapSteps.length) * 100}%`,
+                transition: "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            />
+          </div>
+          <div className="flex justify-between px-[9%]">
+            {roadmapSteps.map((_, i) => (
+              <div
+                key={i}
+                className="w-4 h-4 rounded-full cursor-pointer relative z-10 transition-all duration-400"
+                onClick={() => setActive(i)}
+                style={{
+                  background: i <= active ? "linear-gradient(135deg, #5CA8D2, #06d6a0)" : "white",
+                  border: i <= active ? "2px solid transparent" : "2px solid rgba(92,168,210,0.3)",
+                  boxShadow: i <= active ? "0 0 0 4px rgba(92,168,210,0.15)" : "none",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -65,7 +96,7 @@ export default function Roadmap() {
             <div
               key={i}
               onClick={() => setActive(i)}
-              className="p-7 rounded-[20px] cursor-pointer transition-all duration-400"
+              className="p-7 rounded-[20px] cursor-pointer transition-all duration-500 relative overflow-hidden"
               style={{
                 background: active === i
                   ? "linear-gradient(135deg, rgba(92,168,210,0.15), rgba(6,214,160,0.08))"
@@ -77,31 +108,49 @@ export default function Roadmap() {
                 boxShadow: active === i ? "0 8px 30px rgba(92,168,210,0.15)" : "0 1px 3px rgba(0,0,0,0.04)",
               }}
             >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3" style={{ background: "rgba(92,168,210,0.1)" }}>{step.icon}</div>
-              <div className="text-xs font-bold text-primary tracking-wider mb-1">
+              {/* Active indicator */}
+              {active === i && (
+                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, #5CA8D2, #06d6a0)" }} />
+              )}
+
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-all duration-400"
+                style={{
+                  background: active === i
+                    ? "linear-gradient(135deg, rgba(92,168,210,0.15), rgba(6,214,160,0.1))"
+                    : "rgba(92,168,210,0.1)",
+                }}
+              >
+                {step.icon}
+              </div>
+              <div
+                className="text-xs font-bold tracking-wider mb-1 transition-colors duration-300"
+                style={{ color: active === i ? "#06d6a0" : "#5CA8D2" }}
+              >
                 {step.phase}
               </div>
               <h3 className="text-xl font-bold mb-3 text-text-main">{step.title}</h3>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 {step.items.map((item, j) => (
-                  <span key={j} className="text-[13px] text-text-muted leading-relaxed">
-                    • {item}
-                  </span>
+                  <div key={j} className="flex items-start gap-2">
+                    <span className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" />
+                    <span className="text-[13px] text-text-muted leading-relaxed">{item}</span>
+                  </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Progress bar */}
+        {/* Progress bar (Mobile) */}
         <div
-          className="mt-10 h-1 rounded-sm relative overflow-hidden"
+          className="lg:hidden mt-8 h-1 rounded-sm relative overflow-hidden"
           style={{ background: "rgba(92,168,210,0.12)" }}
         >
           <div
             className="h-full rounded-sm transition-all duration-600"
             style={{
-              background: "var(--gradient-1)",
+              background: "linear-gradient(90deg, #5CA8D2, #06d6a0)",
               width: `${((active + 1) / roadmapSteps.length) * 100}%`,
               transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
             }}

@@ -36,11 +36,23 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-12px)" },
         },
+        "pulse-ring": {
+          "0%": { transform: "scale(0.9)", opacity: "0.5" },
+          "50%": { transform: "scale(1.15)", opacity: "0" },
+          "100%": { transform: "scale(0.9)", opacity: "0" },
+        },
+        shimmer: {
+          "0%": { left: "-100%" },
+          "50%": { left: "100%" },
+          "100%": { left: "100%" },
+        },
       },
       animation: {
         fadeUp: "fadeUp 1s ease forwards",
         fadeIn: "fadeIn 1s ease forwards",
         float: "float 8s ease-in-out infinite",
+        "pulse-ring": "pulse-ring 2s ease-in-out infinite",
+        shimmer: "shimmer 3s ease-in-out infinite",
       },
     },
   },

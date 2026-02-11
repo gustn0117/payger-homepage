@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "./hooks";
+import { useInView, useStaggeredInView } from "./hooks";
 
 const advantages = [
   {
@@ -12,6 +12,7 @@ const advantages = [
     ),
     title: "업계 특화",
     desc: "유통·물류업 거래 특성을 반영한 맞춤형 결제 시스템",
+    highlight: true,
   },
   {
     icon: (
@@ -22,6 +23,7 @@ const advantages = [
     ),
     title: "보안성",
     desc: "금융권 수준의 보안 기술과 개인정보 보호",
+    highlight: false,
   },
   {
     icon: (
@@ -32,6 +34,7 @@ const advantages = [
     ),
     title: "편의성",
     desc: "간편한 인증과 직관적인 UI/UX 설계",
+    highlight: false,
   },
   {
     icon: (
@@ -42,40 +45,56 @@ const advantages = [
     ),
     title: "확장성",
     desc: "다양한 가맹점 및 서비스와의 연동 가능",
+    highlight: false,
   },
 ];
 
 export default function Advantages() {
   const [ref, isVisible] = useInView();
+  const [cardsRef, visibleItems] = useStaggeredInView(advantages.length, 0.1, 120);
 
   return (
-    <section id="advantages" className="py-[120px] px-6">
+    <section id="advantages" className="py-[120px] px-6 mesh-gradient">
       <div className="max-w-[1200px] mx-auto">
         <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
           <div className="section-tag">경쟁 우위</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             <span className="text-gradient">페이져</span>를 선택하는 이유
           </h2>
+          <p className="text-text-muted mt-4 max-w-[480px] mx-auto text-[15px] leading-relaxed">
+            차별화된 기술력으로 결제의 새로운 기준을 제시합니다
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {advantages.map((adv, i) => (
             <div
               key={i}
-              className="p-9 rounded-[20px] transition-all duration-300"
+              className={`card-hover p-9 rounded-[20px] relative overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
               style={{
-                background: i === 0
+                background: adv.highlight
                   ? "linear-gradient(135deg, rgba(92,168,210,0.12), rgba(6,214,160,0.06))"
                   : "#ffffff",
-                border: i === 0
+                border: adv.highlight
                   ? "1px solid rgba(92,168,210,0.3)"
                   : "1px solid #e2e8f0",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
               }}
             >
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style={{ background: "rgba(92,168,210,0.1)" }}>{adv.icon}</div>
+              {/* Decorative number */}
+              <div className="number-badge text-text-main" style={{ fontSize: 60 }}>
+                {String(i + 1).padStart(2, "0")}
+              </div>
+
+              <div className="icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style={{ background: "rgba(92,168,210,0.1)" }}>
+                {adv.icon}
+              </div>
               <h3 className="text-xl font-bold mb-3 text-text-main">{adv.title}</h3>
               <p className="text-[15px] leading-relaxed text-text-muted">{adv.desc}</p>
+
+              {/* Bottom accent line for highlighted card */}
+              {adv.highlight && (
+                <div className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, #5CA8D2, #06d6a0)" }} />
+              )}
             </div>
           ))}
         </div>

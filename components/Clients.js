@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "./hooks";
+import { useInView, useStaggeredInView } from "./hooks";
 
 const clients = [
   {
@@ -14,6 +14,7 @@ const clients = [
     ),
     color: "rgba(6, 214, 160, 0.1)",
     border: "rgba(6, 214, 160, 0.25)",
+    gradientFrom: "#06d6a0",
     image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -27,6 +28,7 @@ const clients = [
     ),
     color: "rgba(92, 168, 210, 0.1)",
     border: "rgba(92, 168, 210, 0.25)",
+    gradientFrom: "#5CA8D2",
     image: "https://images.unsplash.com/photo-1686632800715-b705ba1b0eb6?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -40,12 +42,14 @@ const clients = [
     ),
     color: "rgba(168, 85, 247, 0.1)",
     border: "rgba(168, 85, 247, 0.25)",
+    gradientFrom: "#a855f7",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
 export default function Clients() {
   const [ref, isVisible] = useInView();
+  const [cardsRef, visibleItems] = useStaggeredInView(clients.length, 0.1, 150);
 
   return (
     <section
@@ -59,35 +63,46 @@ export default function Clients() {
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             다양한 유통·물류 <span className="text-gradient">파트너</span>
           </h2>
+          <p className="text-text-muted mt-4 max-w-[480px] mx-auto text-[15px] leading-relaxed">
+            각 산업 분야의 특성에 맞춘 최적의 결제 솔루션을 제공합니다
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-7">
           {clients.map((client, i) => (
-            <div key={i} className="card-hover bg-white rounded-[20px] overflow-hidden text-center">
+            <div
+              key={i}
+              className={`card-hover bg-white rounded-[20px] overflow-hidden text-center stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
+            >
               {/* Card Image */}
-              <div className="relative h-[160px] overflow-hidden">
+              <div className="relative h-[170px] overflow-hidden">
                 <img
                   src={client.image}
                   alt={client.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700"
+                  onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+                  onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
                 />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.6) 70%, #ffffff 100%)" }} />
               </div>
               <div className="p-9 pt-4">
                 <div
-                  className="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-6 -mt-12 relative z-10 bg-white"
-                  style={{ border: `2px solid ${client.border}`, boxShadow: "0 4px 12px rgba(0,0,0,0.06)" }}
+                  className="icon-box w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-6 -mt-12 relative z-10 bg-white"
+                  style={{
+                    border: `2px solid ${client.border}`,
+                    boxShadow: `0 4px 16px rgba(0,0,0,0.06), 0 0 0 4px ${client.color}`,
+                  }}
                 >
                   {client.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-text-main">{client.title}</h3>
-                <div className="flex flex-col gap-2">
+                <h3 className="text-xl font-bold mb-5 text-text-main">{client.title}</h3>
+                <div className="flex flex-col gap-2.5">
                   {client.items.map((item, j) => (
                     <span
                       key={j}
-                      className="py-2 px-4 rounded-lg text-sm text-text-muted"
-                      style={{ background: "rgba(92,168,210,0.06)" }}
+                      className="feature-badge justify-center"
                     >
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: client.gradientFrom }} />
                       {item}
                     </span>
                   ))}
