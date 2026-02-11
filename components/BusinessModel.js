@@ -20,8 +20,7 @@ const models = [
     desc: "데이터 분석, 마케팅 솔루션, 기업 맞춤형 통합 서비스를 제공합니다.",
     features: ["AI 기반 데이터 인사이트", "맞춤형 마케팅 도구"],
     icon: (
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#bm2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <defs><linearGradient id="bm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06d6a0" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20V14" />
       </svg>
     ),
