@@ -1,40 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import { useInView } from "./hooks";
+import { useInView, useStaggeredInView } from "./hooks";
 
 const roadmapSteps = [
   {
-    phase: "1단계", title: "시장 진입", items: ["핵심 서비스 출시", "초기 사용자 확보"],
+    phase: "Phase 1", title: "시장 진입", items: ["핵심 서비스 출시", "초기 사용자 확보"],
+    period: "2025 Q1-Q2",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rm1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
       </svg>
     ),
   },
   {
-    phase: "2단계", title: "성장", items: ["제휴 가맹점 확대", "사용자 기반 강화"],
+    phase: "Phase 2", title: "성장", items: ["제휴 가맹점 확대", "사용자 기반 강화"],
+    period: "2025 Q3-Q4",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rm2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" />
       </svg>
     ),
   },
   {
-    phase: "3단계", title: "확장", items: ["신규 서비스 론칭", "해외 진출 준비"],
+    phase: "Phase 3", title: "확장", items: ["신규 서비스 론칭", "해외 진출 준비"],
+    period: "2026 Q1-Q2",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rm3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#06d6a0" /></linearGradient></defs>
         <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
       </svg>
     ),
   },
   {
-    phase: "4단계", title: "글로벌", items: ["해외 시장 진출", "글로벌 플랫폼 구축"],
+    phase: "Phase 4", title: "글로벌", items: ["해외 시장 진출", "글로벌 플랫폼 구축"],
+    period: "2026 Q3~",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#rm4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#rm4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="rm4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06d6a0" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
         <circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><path d="M4.93 4.93l4.24 4.24" /><path d="M14.83 14.83l4.24 4.24" />
       </svg>
@@ -43,8 +47,8 @@ const roadmapSteps = [
 ];
 
 export default function Roadmap() {
-  const [active, setActive] = useState(0);
   const [ref, isVisible] = useInView();
+  const [cardsRef, visibleItems] = useStaggeredInView(roadmapSteps.length, 0.1, 200);
 
   return (
     <section
@@ -53,7 +57,7 @@ export default function Roadmap() {
       style={{ background: "#eef5fa" }}
     >
       <div className="max-w-[1000px] mx-auto">
-        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
+        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-20`}>
           <div className="section-tag">성장 로드맵</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             글로벌을 향한 <span className="text-gradient">여정</span>
@@ -63,98 +67,98 @@ export default function Roadmap() {
           </p>
         </div>
 
-        {/* Timeline Dots (Desktop) */}
-        <div className="hidden lg:block relative mb-8">
-          <div className="absolute top-[7px] left-[12.5%] right-[12.5%] h-[2px]" style={{ background: "rgba(92,168,210,0.12)" }}>
+        {/* Vertical Timeline */}
+        <div ref={cardsRef} className="relative">
+          {/* Center Line */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2" style={{ background: "rgba(92,168,210,0.12)" }}>
             <div
-              className="h-full rounded-sm"
+              className="w-full rounded-full"
               style={{
-                background: "linear-gradient(90deg, #5CA8D2, #06d6a0)",
-                width: `${((active + 1) / roadmapSteps.length) * 100}%`,
-                transition: "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                background: "linear-gradient(180deg, #5CA8D2, #06d6a0)",
+                height: `${((visibleItems.length) / roadmapSteps.length) * 100}%`,
+                transition: "height 1s cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             />
           </div>
-          <div className="flex justify-between px-[9%]">
-            {roadmapSteps.map((_, i) => (
-              <div
-                key={i}
-                className="w-4 h-4 rounded-full cursor-pointer relative z-10 transition-all duration-400"
-                onClick={() => setActive(i)}
-                style={{
-                  background: i <= active ? "linear-gradient(135deg, #5CA8D2, #06d6a0)" : "white",
-                  border: i <= active ? "2px solid transparent" : "2px solid rgba(92,168,210,0.3)",
-                  boxShadow: i <= active ? "0 0 0 4px rgba(92,168,210,0.15)" : "none",
-                }}
-              />
-            ))}
-          </div>
-        </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {roadmapSteps.map((step, i) => (
-            <div
-              key={i}
-              onClick={() => setActive(i)}
-              className="p-7 rounded-[20px] cursor-pointer transition-all duration-500 relative overflow-hidden"
-              style={{
-                background: active === i
-                  ? "linear-gradient(135deg, rgba(92,168,210,0.15), rgba(6,214,160,0.08))"
-                  : "#ffffff",
-                border: active === i
-                  ? "1px solid rgba(92,168,210,0.4)"
-                  : "1px solid #e2e8f0",
-                transform: active === i ? "scale(1.03)" : "scale(1)",
-                boxShadow: active === i ? "0 8px 30px rgba(92,168,210,0.15)" : "0 1px 3px rgba(0,0,0,0.04)",
-              }}
-            >
-              {/* Active indicator */}
-              {active === i && (
-                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, #5CA8D2, #06d6a0)" }} />
-              )}
-
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-all duration-400"
-                style={{
-                  background: active === i
-                    ? "linear-gradient(135deg, rgba(92,168,210,0.15), rgba(6,214,160,0.1))"
-                    : "rgba(92,168,210,0.1)",
-                }}
-              >
-                {step.icon}
-              </div>
-              <div
-                className="text-xs font-bold tracking-wider mb-1 transition-colors duration-300"
-                style={{ color: active === i ? "#06d6a0" : "#5CA8D2" }}
-              >
-                {step.phase}
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-text-main">{step.title}</h3>
-              <div className="flex flex-col gap-2">
-                {step.items.map((item, j) => (
-                  <div key={j} className="flex items-start gap-2">
-                    <span className="w-1 h-1 rounded-full bg-accent mt-2 shrink-0" />
-                    <span className="text-[13px] text-text-muted leading-relaxed">{item}</span>
+          <div className="flex flex-col gap-8 lg:gap-0">
+            {roadmapSteps.map((step, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <div
+                  key={i}
+                  className={`stagger-item ${visibleItems.includes(i) ? "visible" : ""} relative lg:flex items-center ${i > 0 ? "lg:mt-[-20px]" : ""}`}
+                  style={{ minHeight: 160 }}
+                >
+                  {/* Desktop: alternating sides */}
+                  <div className={`hidden lg:block w-1/2 ${isLeft ? "pr-12 text-right" : "pl-12 order-2"}`}>
+                    <div className={`card-hover p-7 rounded-[20px] bg-white inline-block ${isLeft ? "ml-auto" : "mr-auto"} max-w-[380px] w-full`}>
+                      <div className="flex items-center gap-3 mb-3" style={{ flexDirection: isLeft ? "row-reverse" : "row" }}>
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                          style={{ background: "rgba(92,168,210,0.1)" }}
+                        >
+                          {step.icon}
+                        </div>
+                        <div style={{ textAlign: isLeft ? "right" : "left" }}>
+                          <div className="text-xs font-bold tracking-wider text-accent">{step.phase}</div>
+                          <h3 className="text-lg font-bold text-text-main">{step.title}</h3>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-1.5" style={{ alignItems: isLeft ? "flex-end" : "flex-start" }}>
+                        {step.items.map((item, j) => (
+                          <div key={j} className={`flex items-center gap-2 ${isLeft ? "flex-row-reverse" : ""}`}>
+                            <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                            <span className="text-[13px] text-text-muted">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className={`text-[11px] text-text-muted/60 font-medium mt-3 ${isLeft ? "text-right" : "text-left"}`}>{step.period}</div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Progress bar (Mobile) */}
-        <div
-          className="lg:hidden mt-8 h-1 rounded-sm relative overflow-hidden"
-          style={{ background: "rgba(92,168,210,0.12)" }}
-        >
-          <div
-            className="h-full rounded-sm transition-all duration-600"
-            style={{
-              background: "linear-gradient(90deg, #5CA8D2, #06d6a0)",
-              width: `${((active + 1) / roadmapSteps.length) * 100}%`,
-              transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
+                  {/* Center dot */}
+                  <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white items-center justify-center z-10"
+                    style={{
+                      border: visibleItems.includes(i) ? "2px solid #5CA8D2" : "2px solid rgba(92,168,210,0.2)",
+                      boxShadow: visibleItems.includes(i) ? "0 0 0 6px rgba(92,168,210,0.1)" : "none",
+                      transition: "all 0.5s ease",
+                    }}
+                  >
+                    <span className="text-xs font-extrabold text-gradient">{i + 1}</span>
+                  </div>
+
+                  {/* Empty other side for desktop */}
+                  <div className={`hidden lg:block w-1/2 ${isLeft ? "order-2" : ""}`} />
+
+                  {/* Mobile card */}
+                  <div className="lg:hidden card-hover p-7 rounded-[20px] bg-white relative overflow-hidden">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                        style={{ background: "rgba(92,168,210,0.1)" }}
+                      >
+                        {step.icon}
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold tracking-wider text-accent">{step.phase}</div>
+                        <h3 className="text-lg font-bold text-text-main">{step.title}</h3>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      {step.items.map((item, j) => (
+                        <div key={j} className="flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
+                          <span className="text-[13px] text-text-muted">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-[11px] text-text-muted/60 font-medium mt-3">{step.period}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

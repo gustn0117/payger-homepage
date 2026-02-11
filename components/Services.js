@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView, useStaggeredInView } from "./hooks";
+import { useInView } from "./hooks";
 
 const services = [
   {
@@ -8,6 +8,7 @@ const services = [
     desc: "스마트폰으로 언제 어디서나 빠르고 안전한 결제. QR코드, NFC 등 다양한 모바일 결제 방식을 지원합니다.",
     tag: "Mobile",
     num: "01",
+    features: ["QR코드 즉시 결제", "NFC 태그 결제", "생체 인증 지원"],
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -21,6 +22,7 @@ const services = [
     desc: "다양한 카드사와 연동된 편리한 통합 결제 시스템. 하나의 단말기로 모든 카드 결제를 처리합니다.",
     tag: "Card",
     num: "02",
+    features: ["전 카드사 지원", "단일 단말기 통합", "실시간 승인 처리"],
     image: "https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -34,6 +36,7 @@ const services = [
     desc: "AI 기반 맞춤형 추천 및 효율적 관리. 데이터 분석을 통한 최적의 결제 환경을 제공합니다.",
     tag: "AI",
     num: "03",
+    features: ["매출 패턴 AI 분석", "이상 거래 탐지", "맞춤형 리포트"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#svc3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -44,14 +47,75 @@ const services = [
   },
 ];
 
+function ServiceRow({ service, reversed }) {
+  const [ref, isVisible] = useInView(0.15);
+
+  return (
+    <div
+      ref={ref}
+      className={`animate-in ${isVisible ? "visible" : ""} flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-20`}
+    >
+      {/* Image Side */}
+      <div className="flex-1 w-full">
+        <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+          <img
+            src={service.image}
+            alt={service.title}
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: reversed
+                ? "linear-gradient(135deg, rgba(92,168,210,0.3), rgba(6,214,160,0.15))"
+                : "linear-gradient(225deg, rgba(92,168,210,0.3), rgba(6,214,160,0.15))",
+            }}
+          />
+          <div className="absolute top-5 left-5">
+            <span
+              className="text-[11px] font-bold tracking-[3px] text-white/90 px-4 py-2 rounded-full uppercase"
+              style={{ background: "rgba(0,0,0,0.2)", backdropFilter: "blur(8px)" }}
+            >
+              {service.tag}
+            </span>
+          </div>
+          <div className="absolute bottom-5 right-5 font-black text-white/10 text-[80px] leading-none" style={{ fontFamily: "Syne, sans-serif" }}>
+            {service.num}
+          </div>
+        </div>
+      </div>
+
+      {/* Text Side */}
+      <div className="flex-1">
+        <div className="icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.1)" }}>
+          {service.icon}
+        </div>
+        <h3 className="text-[32px] max-md:text-2xl font-extrabold mb-4 text-text-main tracking-tight">{service.title}</h3>
+        <p className="text-base leading-relaxed text-text-muted mb-8">{service.desc}</p>
+        <div className="flex flex-col gap-3">
+          {service.features.map((f, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(6,214,160,0.1)" }}>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <span className="text-sm text-text-muted font-medium">{f}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Services() {
   const [ref, isVisible] = useInView();
-  const [cardsRef, visibleItems] = useStaggeredInView(services.length, 0.1, 150);
 
   return (
     <section id="services" className="py-[120px] px-6 relative mesh-gradient">
-      <div className="max-w-[1200px] mx-auto">
-        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
+      <div className="max-w-[1100px] mx-auto">
+        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-20`}>
           <div className="section-tag">핵심 서비스</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             스마트한 결제, <span className="text-gradient">간편한 관리</span>
@@ -61,38 +125,9 @@ export default function Services() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div className="flex flex-col gap-24">
           {services.map((service, i) => (
-            <div
-              key={i}
-              className={`card-hover bg-white rounded-[20px] relative overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
-            >
-              {/* Number Badge */}
-              <div className="number-badge text-text-main">{service.num}</div>
-
-              {/* Card Image */}
-              <div className="relative h-[200px] overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                  style={{ transform: "scale(1)" }}
-                  onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-                  onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 60%, #ffffff 100%)" }} />
-                <div className="absolute top-4 right-4 text-[11px] font-bold tracking-widest text-white/80 px-3 py-1.5 rounded-full" style={{ background: "rgba(0,0,0,0.15)", backdropFilter: "blur(8px)" }}>
-                  {service.tag}
-                </div>
-              </div>
-              <div className="px-10 pb-10 pt-2">
-                <div className="icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.1)" }}>
-                  {service.icon}
-                </div>
-                <h3 className="text-[22px] font-bold mb-3 text-text-main">{service.title}</h3>
-                <p className="text-[15px] leading-relaxed text-text-muted">{service.desc}</p>
-              </div>
-            </div>
+            <ServiceRow key={i} service={service} reversed={i % 2 === 1} />
           ))}
         </div>
       </div>

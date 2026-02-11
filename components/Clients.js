@@ -49,7 +49,7 @@ const clients = [
 
 export default function Clients() {
   const [ref, isVisible] = useInView();
-  const [cardsRef, visibleItems] = useStaggeredInView(clients.length, 0.1, 150);
+  const [cardsRef, visibleItems] = useStaggeredInView(clients.length, 0.1, 200);
 
   return (
     <section
@@ -57,7 +57,7 @@ export default function Clients() {
       className="py-[120px] px-6"
       style={{ background: "#eef5fa" }}
     >
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
           <div className="section-tag">주요 고객사</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
@@ -68,44 +68,60 @@ export default function Clients() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        {/* Horizontal editorial cards */}
+        <div ref={cardsRef} className="flex flex-col gap-6">
           {clients.map((client, i) => (
             <div
               key={i}
-              className={`card-hover bg-white rounded-[20px] overflow-hidden text-center stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
+              className={`card-hover bg-white rounded-[20px] overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
             >
-              {/* Card Image */}
-              <div className="relative h-[170px] overflow-hidden">
-                <img
-                  src={client.image}
-                  alt={client.title}
-                  className="w-full h-full object-cover transition-transform duration-700"
-                  onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.05)"}
-                  onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"}
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.6) 70%, #ffffff 100%)" }} />
-              </div>
-              <div className="p-9 pt-4">
-                <div
-                  className="icon-box w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-6 -mt-12 relative z-10 bg-white"
-                  style={{
-                    border: `2px solid ${client.border}`,
-                    boxShadow: `0 4px 16px rgba(0,0,0,0.06), 0 0 0 4px ${client.color}`,
-                  }}
-                >
-                  {client.icon}
+              <div className="flex flex-col md:flex-row">
+                {/* Image */}
+                <div className="md:w-[320px] h-[200px] md:h-auto relative overflow-hidden shrink-0">
+                  <img
+                    src={client.image}
+                    alt={client.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${client.gradientFrom}33, transparent)` }} />
                 </div>
-                <h3 className="text-xl font-bold mb-5 text-text-main">{client.title}</h3>
-                <div className="flex flex-col gap-2.5">
-                  {client.items.map((item, j) => (
-                    <span
-                      key={j}
-                      className="feature-badge justify-center"
+
+                {/* Content */}
+                <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div
+                      className="icon-box w-14 h-14 rounded-full flex items-center justify-center bg-white shrink-0"
+                      style={{
+                        border: `2px solid ${client.border}`,
+                        boxShadow: `0 0 0 4px ${client.color}`,
+                      }}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: client.gradientFrom }} />
-                      {item}
-                    </span>
-                  ))}
+                      {client.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-text-main">{client.title}</h3>
+                      <span className="text-xs text-text-muted font-medium">맞춤형 결제 솔루션</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {client.items.map((item, j) => (
+                      <span
+                        key={j}
+                        className="feature-badge"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: client.gradientFrom }} />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Number */}
+                <div className="hidden lg:flex items-center pr-10">
+                  <span className="text-[80px] font-extrabold leading-none text-text-main/[0.04]" style={{ fontFamily: "Syne, sans-serif" }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
               </div>
             </div>

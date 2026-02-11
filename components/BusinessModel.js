@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView, useStaggeredInView } from "./hooks";
+import { useInView } from "./hooks";
 
 const models = [
   {
@@ -13,7 +13,6 @@ const models = [
         <rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" />
       </svg>
     ),
-    orbColor: "rgba(92,168,210,0.08)",
     accentColor: "#5CA8D2",
   },
   {
@@ -26,18 +25,18 @@ const models = [
         <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
       </svg>
     ),
-    orbColor: "rgba(6,214,160,0.08)",
     accentColor: "#06d6a0",
   },
 ];
 
 export default function BusinessModel() {
   const [ref, isVisible] = useInView();
-  const [cardsRef, visibleItems] = useStaggeredInView(models.length, 0.1, 200);
+  const [leftRef, leftVisible] = useInView(0.2);
+  const [rightRef, rightVisible] = useInView(0.2);
 
   return (
     <section className="py-[120px] px-6 mesh-gradient">
-      <div className="max-w-[1000px] mx-auto">
+      <div className="max-w-[1100px] mx-auto">
         <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
           <div className="section-tag">비즈니스 모델</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
@@ -48,37 +47,48 @@ export default function BusinessModel() {
           </p>
         </div>
 
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-7">
-          {models.map((item, i) => (
-            <div
-              key={i}
-              className={`card-hover p-10 rounded-[20px] bg-white relative overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
-            >
-              {/* Decorative orb */}
+        {/* Side-by-side with visual emphasis */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          {models.map((item, i) => {
+            const cardRef = i === 0 ? leftRef : rightRef;
+            const cardVisible = i === 0 ? leftVisible : rightVisible;
+            return (
               <div
-                className="absolute -top-8 -right-8 w-[140px] h-[140px] rounded-full"
-                style={{ background: item.orbColor }}
-              />
-
-              <div className="relative z-10">
-                <div className="icon-box w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.1)" }}>
-                  {item.icon}
+                key={i}
+                ref={cardRef}
+                className={`animate-in ${cardVisible ? "visible" : ""} card-hover p-10 rounded-[24px] bg-white relative overflow-hidden`}
+              >
+                {/* Large number background */}
+                <div className="absolute -top-4 -right-2 text-[120px] font-extrabold leading-none text-text-main/[0.03] pointer-events-none" style={{ fontFamily: "Syne, sans-serif" }}>
+                  {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="text-[22px] font-bold mb-3 text-text-main">{item.title}</h3>
-                <p className="text-[15px] leading-relaxed text-text-muted mb-6">{item.desc}</p>
 
-                {/* Feature tags */}
-                <div className="flex flex-wrap gap-2">
-                  {item.features.map((f, j) => (
-                    <span key={j} className="feature-badge">
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: item.accentColor }} />
-                      {f}
-                    </span>
-                  ))}
+                {/* Top gradient line */}
+                <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: `linear-gradient(90deg, ${item.accentColor}, transparent)` }} />
+
+                <div className="relative z-10">
+                  <div className="icon-box w-16 h-16 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.08)" }}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-[24px] font-bold mb-3 text-text-main">{item.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-text-muted mb-8">{item.desc}</p>
+
+                  <div className="flex flex-col gap-3">
+                    {item.features.map((f, j) => (
+                      <div key={j} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: `${item.accentColor}15` }}>
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={item.accentColor} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-text-muted font-medium">{f}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

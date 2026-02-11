@@ -8,6 +8,7 @@ const platforms = [
     features: ["간편하고 빠른 결제", "다양한 결제수단 제공"],
     iconBg: "rgba(92,168,210,0.12)",
     num: "01",
+    position: "top-left",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#plt1)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="plt1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5CA8D2" /><stop offset="100%" stopColor="#7BC4E8" /></linearGradient></defs>
@@ -20,6 +21,7 @@ const platforms = [
     features: ["매출 관리 시스템", "실시간 정산 지원"],
     iconBg: "rgba(6,214,160,0.12)",
     num: "02",
+    position: "top-right",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#plt2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="plt2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#06d6a0" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
@@ -32,6 +34,7 @@ const platforms = [
     features: ["통합 운영 관리", "데이터 분석 대시보드"],
     iconBg: "rgba(168,85,247,0.12)",
     num: "03",
+    position: "bottom-left",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#plt3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="plt3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#a855f7" /><stop offset="100%" stopColor="#5CA8D2" /></linearGradient></defs>
@@ -44,6 +47,7 @@ const platforms = [
     features: ["타 서비스 연계", "RESTful API 제공"],
     iconBg: "rgba(251,191,36,0.12)",
     num: "04",
+    position: "bottom-right",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#plt4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <defs><linearGradient id="plt4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fbbf24" /><stop offset="100%" stopColor="#f59e0b" /></linearGradient></defs>
@@ -55,7 +59,7 @@ const platforms = [
 
 export default function Platform() {
   const [ref, isVisible] = useInView();
-  const [cardsRef, visibleItems] = useStaggeredInView(platforms.length, 0.1, 120);
+  const [cardsRef, visibleItems] = useStaggeredInView(platforms.length, 0.1, 150);
 
   return (
     <section
@@ -63,8 +67,8 @@ export default function Platform() {
       className="py-[120px] px-6 relative"
       style={{ background: "#eef5fa" }}
     >
-      <div className="max-w-[1200px] mx-auto">
-        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
+      <div className="max-w-[1100px] mx-auto">
+        <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-20`}>
           <div className="section-tag">서비스 플랫폼</div>
           <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main">
             올인원 <span className="text-gradient">결제 플랫폼</span>
@@ -74,40 +78,58 @@ export default function Platform() {
           </p>
         </div>
 
-        {/* Connection Line (Desktop) */}
-        <div className="hidden lg:block relative mb-8">
-          <div className="absolute top-[26px] left-[12.5%] right-[12.5%] h-[2px]" style={{ background: "linear-gradient(90deg, rgba(92,168,210,0.15), rgba(6,214,160,0.15))" }} />
-          <div className="flex justify-between px-[9%]">
-            {platforms.map((_, i) => (
-              <div key={i} className="w-3 h-3 rounded-full bg-white border-2 relative z-10" style={{ borderColor: "rgba(92,168,210,0.4)" }} />
+        {/* Hub + Cards layout */}
+        <div ref={cardsRef} className="relative">
+          {/* Center Hub - Desktop only */}
+          <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[160px] h-[160px] rounded-full items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(92,168,210,0.12), rgba(6,214,160,0.08))",
+              border: "2px solid rgba(92,168,210,0.2)",
+              boxShadow: "0 0 60px rgba(92,168,210,0.1)",
+            }}
+          >
+            <div className="text-center">
+              <div className="text-2xl font-extrabold text-gradient">Payger</div>
+              <div className="text-[11px] text-text-muted font-medium mt-1">통합 결제 허브</div>
+            </div>
+          </div>
+
+          {/* Connection lines - Desktop only */}
+          <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+            <line x1="50%" y1="25%" x2="35%" y2="45%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50%" y1="25%" x2="65%" y2="45%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50%" y1="75%" x2="35%" y2="55%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+            <line x1="50%" y1="75%" x2="65%" y2="55%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
+          </svg>
+
+          {/* 2x2 Grid with gap for hub */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-x-[200px] lg:gap-y-5">
+            {platforms.map((p, i) => (
+              <div
+                key={i}
+                className={`card-hover bg-white rounded-[20px] p-8 flex flex-col gap-4 relative overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
+              >
+                <div className="number-badge text-text-main" style={{ fontSize: 60 }}>{p.num}</div>
+                <div className="flex items-center gap-4">
+                  <div
+                    className="icon-box w-[52px] h-[52px] rounded-[14px] flex items-center justify-center shrink-0"
+                    style={{ background: p.iconBg }}
+                  >
+                    {p.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-text-main">{p.title}</h3>
+                </div>
+                <div className="flex flex-col gap-2.5">
+                  {p.features.map((f, j) => (
+                    <div key={j} className="flex items-center gap-2.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span className="text-sm text-text-muted">{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-
-        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {platforms.map((p, i) => (
-            <div
-              key={i}
-              className={`card-hover bg-white rounded-[20px] p-8 flex flex-col gap-5 relative overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
-            >
-              <div className="number-badge text-text-main" style={{ fontSize: 60 }}>{p.num}</div>
-              <div
-                className="icon-box w-[52px] h-[52px] rounded-[14px] flex items-center justify-center text-2xl"
-                style={{ background: p.iconBg }}
-              >
-                {p.icon}
-              </div>
-              <h3 className="text-xl font-bold text-text-main">{p.title}</h3>
-              <div className="flex flex-col gap-2.5">
-                {p.features.map((f, j) => (
-                  <div key={j} className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    <span className="text-sm text-text-muted">{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
