@@ -58,99 +58,119 @@ export default function Hero() {
         background: "linear-gradient(135deg, #5CA8D2 0%, #4A9BC7 40%, #3d8ab0 100%)",
       }}
     >
-      {/* Grid Pattern Overlay */}
+      {/* Grid Pattern - visible */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)
           `,
-          backgroundSize: "60px 60px",
+          backgroundSize: "50px 50px",
         }}
       />
 
-      {/* Diagonal Lines Pattern */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.04 }}>
-        <defs>
-          <pattern id="hero-diag" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="80" x2="80" y2="0" stroke="white" strokeWidth="0.5" />
-          </pattern>
-        </defs>
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#hero-diag)" />
-      </svg>
-
-      {/* Large Rotating Ring - Right */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 800, height: 800,
-          top: "50%", left: "60%",
-          animation: "rotate-slow 60s linear infinite",
-          opacity: 0.06,
-        }}
-      >
-        <svg viewBox="0 0 800 800" fill="none">
-          <circle cx="400" cy="400" r="380" stroke="white" strokeWidth="0.5" strokeDasharray="8 12" />
-          <circle cx="400" cy="400" r="320" stroke="white" strokeWidth="0.4" strokeDasharray="6 10" />
-          <circle cx="400" cy="400" r="260" stroke="white" strokeWidth="0.3" strokeDasharray="4 8" />
-          <circle cx="400" cy="400" r="200" stroke="white" strokeWidth="0.2" strokeDasharray="2 6" />
-        </svg>
-      </div>
-
-      {/* Small Rotating Ring - Left */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          width: 400, height: 400,
-          top: "20%", left: "-5%",
-          animation: "rotate-slow 45s linear infinite reverse",
-          opacity: 0.05,
-        }}
-      >
-        <svg viewBox="0 0 400 400" fill="none">
-          <circle cx="200" cy="200" r="180" stroke="white" strokeWidth="0.5" strokeDasharray="6 8" />
-          <circle cx="200" cy="200" r="140" stroke="white" strokeWidth="0.3" strokeDasharray="3 6" />
-        </svg>
-      </div>
-
-      {/* Hexagon Pattern - Top Right */}
+      {/* Large Wireframe Crystal - Center Right */}
       <svg
+        viewBox="0 0 600 600"
         className="absolute pointer-events-none"
-        style={{ top: "5%", right: "5%", opacity: 0.06 }}
-        width="300" height="300" viewBox="0 0 300 300" fill="none"
+        style={{ right: "-2%", top: "50%", transform: "translateY(-50%)", width: 650, height: 650, opacity: 0.18 }}
+        fill="none" stroke="white"
       >
-        <polygon points="150,10 270,75 270,195 150,260 30,195 30,75" stroke="white" strokeWidth="0.5" />
-        <polygon points="150,50 230,95 230,175 150,220 70,175 70,95" stroke="white" strokeWidth="0.4" />
-        <polygon points="150,85 195,112 195,158 150,185 105,158 105,112" stroke="white" strokeWidth="0.3" />
+        <polygon points="300,30 520,150 480,420 120,420 80,150" strokeWidth="1" />
+        <polygon points="300,100 440,180 410,360 190,360 160,180" strokeWidth="0.7" />
+        <polygon points="300,160 380,210 360,310 240,310 220,210" strokeWidth="0.4" />
+        <line x1="300" y1="30" x2="300" y2="420" strokeWidth="0.4" strokeDasharray="6 6" />
+        <line x1="80" y1="150" x2="480" y2="420" strokeWidth="0.3" strokeDasharray="4 6" />
+        <line x1="520" y1="150" x2="120" y2="420" strokeWidth="0.3" strokeDasharray="4 6" />
+        <line x1="300" y1="30" x2="120" y2="420" strokeWidth="0.3" />
+        <line x1="300" y1="30" x2="480" y2="420" strokeWidth="0.3" />
+        <line x1="80" y1="150" x2="520" y2="150" strokeWidth="0.3" strokeDasharray="3 5" />
+        <line x1="120" y1="420" x2="480" y2="420" strokeWidth="0.3" />
+        <circle cx="300" cy="30" r="5" fill="white" fillOpacity="0.5">
+          <animate attributeName="r" values="4;7;4" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="fillOpacity" values="0.5;0.15;0.5" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="520" cy="150" r="4" fill="white" fillOpacity="0.4">
+          <animate attributeName="r" values="3;5;3" dur="4s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="480" cy="420" r="4" fill="white" fillOpacity="0.3" />
+        <circle cx="120" cy="420" r="4" fill="white" fillOpacity="0.3" />
+        <circle cx="80" cy="150" r="4" fill="white" fillOpacity="0.4">
+          <animate attributeName="r" values="3;5;3" dur="3.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="300" cy="100" r="2.5" fill="white" fillOpacity="0.2" />
+        <circle cx="440" cy="180" r="2.5" fill="white" fillOpacity="0.2" />
+        <circle cx="160" cy="180" r="2.5" fill="white" fillOpacity="0.2" />
       </svg>
+
+      {/* Rotating Ring - Left side */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          width: 500, height: 500,
+          top: "15%", left: "-8%",
+          animation: "rotate-slow 50s linear infinite reverse",
+          opacity: 0.12,
+        }}
+      >
+        <svg viewBox="0 0 500 500" fill="none">
+          <circle cx="250" cy="250" r="230" stroke="white" strokeWidth="0.8" strokeDasharray="8 15" />
+          <circle cx="250" cy="250" r="180" stroke="white" strokeWidth="0.5" strokeDasharray="5 10" />
+        </svg>
+      </div>
 
       {/* Dot Grid - Bottom Left */}
       <svg
         className="absolute pointer-events-none"
-        style={{ bottom: "8%", left: "3%", opacity: 0.08 }}
-        width="200" height="200" viewBox="0 0 200 200" fill="white"
+        style={{ bottom: "6%", left: "2%", opacity: 0.15 }}
+        width="240" height="240" viewBox="0 0 240 240" fill="white"
       >
-        {Array.from({ length: 8 }).map((_, row) =>
-          Array.from({ length: 8 }).map((_, col) => (
-            <circle key={`${row}-${col}`} cx={12 + col * 26} cy={12 + row * 26} r="1.5" />
+        {Array.from({ length: 10 }).map((_, row) =>
+          Array.from({ length: 10 }).map((_, col) => (
+            <circle key={`${row}-${col}`} cx={12 + col * 24} cy={12 + row * 24} r="1.5" />
           ))
         )}
       </svg>
 
-      {/* Circuit Lines - Bottom Right */}
+      {/* Circuit / Network Lines - Top Left */}
       <svg
         className="absolute pointer-events-none"
-        style={{ bottom: "15%", right: "15%", opacity: 0.05 }}
-        width="180" height="180" viewBox="0 0 180 180" fill="none" stroke="white" strokeWidth="0.8"
+        style={{ top: "10%", left: "8%", opacity: 0.12 }}
+        width="250" height="200" viewBox="0 0 250 200" fill="none" stroke="white" strokeWidth="0.8"
       >
-        <path d="M10,90 H60 L80,60 H120 L140,90 H170" />
-        <path d="M10,110 H40 L60,140 H100 L120,110 H170" />
-        <path d="M90,10 V50 L60,80 V120 L90,150 V170" />
-        <circle cx="60" cy="60" r="3" fill="white" fillOpacity="0.3" />
-        <circle cx="120" cy="90" r="3" fill="white" fillOpacity="0.3" />
-        <circle cx="100" cy="140" r="3" fill="white" fillOpacity="0.3" />
-        <circle cx="90" cy="50" r="2" fill="white" fillOpacity="0.2" />
+        <path d="M0,100 H50 L75,50 H130 L155,100 H200 L230,70" />
+        <path d="M20,140 H60 L90,170 H150 L175,130 H250" />
+        <circle cx="75" cy="50" r="4" fill="white" fillOpacity="0.4" />
+        <circle cx="155" cy="100" r="4" fill="white" fillOpacity="0.4" />
+        <circle cx="90" cy="170" r="3" fill="white" fillOpacity="0.3" />
+        <circle cx="175" cy="130" r="3" fill="white" fillOpacity="0.3" />
+        <circle cx="230" cy="70" r="3" fill="white" fillOpacity="0.3" />
+      </svg>
+
+      {/* Hexagon Cluster - Top Right */}
+      <svg
+        className="absolute pointer-events-none"
+        style={{ top: "8%", right: "25%", opacity: 0.1 }}
+        width="200" height="200" viewBox="0 0 200 200" fill="none" stroke="white" strokeWidth="0.8"
+      >
+        <polygon points="100,10 160,40 160,100 100,130 40,100 40,40" />
+        <polygon points="100,35 140,55 140,95 100,115 60,95 60,55" strokeWidth="0.5" />
+        <polygon points="100,55 125,68 125,92 100,105 75,92 75,68" strokeWidth="0.3" />
+      </svg>
+
+      {/* Plus Signs scattered */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.1 }}>
+        {[
+          { x: "12%", y: "25%" }, { x: "85%", y: "18%" }, { x: "75%", y: "75%" },
+          { x: "20%", y: "70%" }, { x: "50%", y: "12%" }, { x: "40%", y: "85%" },
+          { x: "92%", y: "45%" }, { x: "8%", y: "50%" },
+        ].map((pos, i) => (
+          <g key={i} transform={`translate(${pos.x.replace("%","")},${pos.y.replace("%","")})`} stroke="white" strokeWidth="1">
+            <line x1="-6" y1="0" x2="6" y2="0" />
+            <line x1="0" y1="-6" x2="0" y2="6" />
+          </g>
+        ))}
       </svg>
 
       {/* Floating Particles */}
@@ -175,23 +195,15 @@ export default function Hero() {
         className="hero-gradient-orb"
         style={{
           width: 600, height: 600, top: "-10%", right: "-10%",
-          background: "radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%)",
+          background: "radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%)",
         }}
       />
       <div
         className="hero-gradient-orb"
         style={{
-          width: 400, height: 400, bottom: "5%", left: "-5%",
-          background: "radial-gradient(circle, rgba(6,214,160,0.12), transparent 70%)",
+          width: 500, height: 500, bottom: "0%", left: "-8%",
+          background: "radial-gradient(circle, rgba(6,214,160,0.15), transparent 70%)",
           animationDelay: "-4s",
-        }}
-      />
-      <div
-        className="hero-gradient-orb"
-        style={{
-          width: 350, height: 350, top: "30%", left: "25%",
-          background: "radial-gradient(circle, rgba(123,196,232,0.08), transparent 70%)",
-          animationDelay: "-2s",
         }}
       />
 
