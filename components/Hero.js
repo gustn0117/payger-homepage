@@ -284,9 +284,18 @@ export default function Hero() {
             <div className="grid grid-cols-1 gap-4">
               {/* Service cards */}
               {[
-                { icon: "📱", title: "모바일 결제", desc: "스마트폰으로 언제 어디서나 빠르고 안전한 결제" },
-                { icon: "💳", title: "통합 카드 결제", desc: "다양한 카드사와 연동된 편리한 통합 결제 시스템" },
-                { icon: "🤖", title: "AI 스마트 솔루션", desc: "AI 기반 맞춤형 추천 및 효율적 관리" },
+                {
+                  icon: (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></svg>),
+                  title: "모바일 결제", desc: "스마트폰으로 언제 어디서나 빠르고 안전한 결제",
+                },
+                {
+                  icon: (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>),
+                  title: "통합 카드 결제", desc: "다양한 카드사와 연동된 편리한 통합 결제 시스템",
+                },
+                {
+                  icon: (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>),
+                  title: "AI 스마트 솔루션", desc: "AI 기반 맞춤형 추천 및 효율적 관리",
+                },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -297,7 +306,7 @@ export default function Hero() {
                     backdropFilter: "blur(16px)",
                   }}
                 >
-                  <span className="text-2xl shrink-0">{item.icon}</span>
+                  <span className="shrink-0 opacity-70">{item.icon}</span>
                   <div>
                     <div className="text-sm font-bold text-white mb-1">{item.title}</div>
                     <div className="text-xs text-white/50 leading-relaxed">{item.desc}</div>
