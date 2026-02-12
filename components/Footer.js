@@ -1,3 +1,5 @@
+"use client";
+
 export default function Footer() {
   return (
     <footer
@@ -26,8 +28,13 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white/80 mb-5 tracking-wide">서비스</h4>
             <div className="flex flex-col gap-3">
-              {["모바일 결제", "카드 결제", "AI 솔루션", "API 연동"].map((s, i) => (
-                <span key={i} className="text-[13px] text-white/45 hover:text-white/70 cursor-pointer transition-colors">{s}</span>
+              {[
+                { label: "핵심 서비스", id: "services" },
+                { label: "주요 고객사", id: "clients" },
+                { label: "경쟁 우위", id: "advantages" },
+                { label: "서비스 플랫폼", id: "platform" },
+              ].map((item, i) => (
+                <span key={i} className="text-[13px] text-white/45 hover:text-white/70 cursor-pointer transition-colors" onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}>{item.label}</span>
               ))}
             </div>
           </div>
@@ -36,8 +43,12 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white/80 mb-5 tracking-wide">회사</h4>
             <div className="flex flex-col gap-3">
-              {["이용약관", "개인정보처리방침", "사업자정보"].map((s, i) => (
-                <span key={i} className="text-[13px] text-white/45 hover:text-white/70 cursor-pointer transition-colors">{s}</span>
+              {[
+                { label: "비즈니스 모델", id: "business" },
+                { label: "성장 로드맵", id: "roadmap" },
+                { label: "상담 문의", id: "contact" },
+              ].map((item, i) => (
+                <span key={i} className="text-[13px] text-white/45 hover:text-white/70 cursor-pointer transition-colors" onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}>{item.label}</span>
               ))}
             </div>
           </div>
@@ -66,11 +77,9 @@ export default function Footer() {
       >
         <span className="text-[13px] text-white/40">&copy; 2026 Payger. All rights reserved.</span>
         <div className="flex gap-5">
-          {["이용약관", "개인정보처리방침"].map((s, i) => (
-            <span key={i} className="text-[13px] text-white/40 cursor-pointer hover:text-white/70 transition-colors">
-              {s}
-            </span>
-          ))}
+          <span className="text-[13px] text-white/40 cursor-pointer hover:text-white/70 transition-colors" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            맨 위로
+          </span>
         </div>
       </div>
     </footer>
