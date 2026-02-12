@@ -1,9 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import { useInView } from "./hooks";
 
 export default function Contact() {
   const [ref, isVisible] = useInView();
+  const [form, setForm] = useState({ title: "", contact: "", message: "" });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.title || !form.contact || !form.message) {
+      setError("모든 항목을 입력해주세요.");
+      return;
+    }
+    setError("");
+
+    const subject = encodeURIComponent(`[페이져 문의] ${form.title}`);
+    const body = encodeURIComponent(`제목: ${form.title}\n연락처: ${form.contact}\n\n문의내용:\n${form.message}`);
+    window.location.href = `mailto:overwrap0@gmail.com?subject=${subject}&body=${body}`;
+  };
 
   return (
     <section
@@ -75,7 +95,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right - CTA Card */}
+            {/* Right - Contact Form */}
             <div className="flex-shrink-0 w-full lg:w-[420px]">
               <div
                 className="p-10 rounded-[28px] relative overflow-hidden"
@@ -97,20 +117,76 @@ export default function Contact() {
                 />
 
                 <div className="relative z-10">
-                  <div className="text-lg font-bold text-white mb-2">무료 상담 신청</div>
-                  <p className="text-sm text-white/50 mb-8">
-                    지금 바로 상담을 신청하세요.
-                  </p>
+                  <div className="text-lg font-bold text-white mb-6">Contact Us</div>
 
-                  <button
-                    className="btn-hero w-full text-center justify-center"
-                    onClick={() => window.location.href = "mailto:overwrap0@gmail.com"}
-                  >
-                    상담 문의하기
-                    <svg className="inline-block ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </button>
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <div>
+                      <label className="text-xs text-white/50 mb-1.5 block">제목</label>
+                      <input
+                        type="text"
+                        name="title"
+                        value={form.title}
+                        onChange={handleChange}
+                        placeholder="문의 제목을 입력하세요"
+                        className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none transition-all duration-300 focus:ring-2 focus:ring-white/30"
+                        style={{
+                          background: "rgba(255,255,255,0.08)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-white/50 mb-1.5 block">연락처</label>
+                      <input
+                        type="text"
+                        name="contact"
+                        value={form.contact}
+                        onChange={handleChange}
+                        placeholder="이메일 또는 전화번호"
+                        className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none transition-all duration-300 focus:ring-2 focus:ring-white/30"
+                        style={{
+                          background: "rgba(255,255,255,0.08)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-xs text-white/50 mb-1.5 block">문의내용</label>
+                      <textarea
+                        name="message"
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder="문의 내용을 입력하세요"
+                        rows={4}
+                        className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/30 outline-none resize-none transition-all duration-300 focus:ring-2 focus:ring-white/30"
+                        style={{
+                          background: "rgba(255,255,255,0.08)",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                        }}
+                      />
+                    </div>
+
+                    {error && (
+                      <div
+                        className="text-sm px-4 py-3 rounded-xl"
+                        style={{ background: "rgba(255,100,100,0.15)", color: "#ff6464" }}
+                      >
+                        {error}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="btn-hero w-full text-center justify-center mt-2"
+                    >
+                      문의하기
+                      <svg className="inline-block ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
