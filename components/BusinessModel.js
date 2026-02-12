@@ -34,7 +34,7 @@ export default function BusinessModel() {
   const [rightRef, rightVisible] = useInView(0.2);
 
   return (
-    <section className="py-[120px] px-6 mesh-gradient">
+    <section id="business" className="py-[120px] px-6 mesh-gradient">
       <div className="max-w-[1100px] mx-auto">
         <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} text-center mb-16`}>
           <div className="section-tag">비즈니스 모델</div>
