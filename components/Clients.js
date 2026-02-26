@@ -68,7 +68,6 @@ export default function Clients() {
           </p>
         </div>
 
-        {/* Horizontal editorial cards */}
         <div ref={cardsRef} className="flex flex-col gap-6">
           {clients.map((client, i) => (
             <div
@@ -76,7 +75,6 @@ export default function Clients() {
               className={`card-hover bg-white rounded-[20px] overflow-hidden stagger-item ${visibleItems.includes(i) ? "visible" : ""}`}
             >
               <div className="flex flex-col md:flex-row">
-                {/* Image */}
                 <div className="md:w-[320px] h-[200px] md:h-auto relative overflow-hidden shrink-0">
                   <img
                     src={client.image}
@@ -86,7 +84,6 @@ export default function Clients() {
                   <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${client.gradientFrom}33, transparent)` }} />
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 p-8 md:p-10 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-4">
                     <div
@@ -117,7 +114,6 @@ export default function Clients() {
                   </div>
                 </div>
 
-                {/* Number */}
                 <div className="hidden lg:flex items-center pr-10">
                   <span className="text-[80px] font-extrabold leading-none text-text-main/[0.04]" style={{ fontFamily: "Syne, sans-serif" }}>
                     {String(i + 1).padStart(2, "0")}

@@ -33,7 +33,6 @@ export default function Navbar() {
         className="max-w-[1200px] mx-auto flex items-center justify-between transition-all duration-300"
         style={{ height: isScrolled ? 60 : 72 }}
       >
-        {/* Logo */}
         <div
           className="flex items-center cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -46,7 +45,6 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Desktop Nav */}
         <div className="desktop-nav flex items-center gap-8">
           {navItems.map((item) => (
             <button
@@ -80,7 +78,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="mobile-toggle bg-transparent border-none text-2xl cursor-pointer transition-transform duration-200"
@@ -93,7 +90,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div
           className="mobile-menu py-5 px-6 flex flex-col gap-1"

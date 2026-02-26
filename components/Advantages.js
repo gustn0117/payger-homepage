@@ -53,7 +53,6 @@ export default function Advantages() {
     <section id="advantages" className="py-[120px] px-6 mesh-gradient">
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-start">
-          {/* Left - Sticky Heading */}
           <div ref={ref} className={`animate-in ${isVisible ? "visible" : ""} lg:w-[380px] lg:shrink-0 lg:sticky lg:top-[120px]`}>
             <div className="section-tag">경쟁 우위</div>
             <h2 className="text-[40px] max-md:text-[28px] font-extrabold tracking-tight text-text-main leading-tight">
@@ -66,7 +65,6 @@ export default function Advantages() {
             </p>
           </div>
 
-          {/* Right - 2x2 Grid */}
           <div ref={cardsRef} className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
             {advantages.map((adv, i) => (
               <div

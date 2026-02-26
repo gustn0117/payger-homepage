@@ -78,9 +78,7 @@ export default function Platform() {
           </p>
         </div>
 
-        {/* Hub + Cards layout */}
         <div ref={cardsRef} className="relative">
-          {/* Center Hub - Desktop only */}
           <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[160px] h-[160px] rounded-full items-center justify-center"
             style={{
               background: "linear-gradient(135deg, rgba(92,168,210,0.12), rgba(6,214,160,0.08))",
@@ -94,7 +92,6 @@ export default function Platform() {
             </div>
           </div>
 
-          {/* Connection lines - Desktop only */}
           <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
             <line x1="50%" y1="25%" x2="35%" y2="45%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
             <line x1="50%" y1="25%" x2="65%" y2="45%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
@@ -102,7 +99,6 @@ export default function Platform() {
             <line x1="50%" y1="75%" x2="65%" y2="55%" stroke="rgba(92,168,210,0.15)" strokeWidth="1" strokeDasharray="4 4" />
           </svg>
 
-          {/* 2x2 Grid with gap for hub */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-x-[200px] lg:gap-y-5">
             {platforms.map((p, i) => (
               <div

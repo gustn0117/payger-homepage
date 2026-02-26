@@ -35,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Gradient Text ── */
 .text-gradient {
   background: var(--gradient-1);
   -webkit-background-clip: text;
@@ -43,7 +42,6 @@ body {
   background-clip: text;
 }
 
-/* ── Glass Nav ── */
 .nav-glass {
   background: transparent;
   transition: all 0.3s ease;
@@ -56,7 +54,6 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 8px 32px rgba(92, 168, 210, 0.06);
 }
 
-/* ── Nav Active Indicator ── */
 .nav-link-active {
   color: var(--primary) !important;
   position: relative;
@@ -73,7 +70,6 @@ body {
   border-radius: 1px;
 }
 
-/* ── Card Hover ── */
 .card-hover {
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid var(--dark-border);
@@ -104,7 +100,6 @@ body {
   background: linear-gradient(135deg, rgba(92, 168, 210, 0.5), rgba(6, 214, 160, 0.3));
 }
 
-/* ── Buttons ── */
 .btn-primary {
   background: var(--gradient-1);
   color: white;
@@ -161,7 +156,6 @@ body {
   box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
 }
 
-/* ── Hero CTA Button ── */
 .btn-hero {
   background: white;
   color: #5CA8D2;
@@ -194,7 +188,6 @@ body {
   left: 100%;
 }
 
-/* ── Section Tag ── */
 .section-tag {
   display: inline-flex;
   align-items: center;
@@ -223,12 +216,10 @@ body {
   animation: shimmer 3s ease-in-out infinite;
 }
 
-/* ── Geometric Pattern Background ── */
 .geo-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='104' viewBox='0 0 60 104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 L60 0 L30 52 L0 0 M0 104 L60 104 L30 52 L0 104' stroke='rgba(255,255,255,0.07)' fill='none' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
-/* ── Scroll Animations ── */
 .animate-in {
   opacity: 0;
   transform: translateY(40px);
@@ -239,7 +230,6 @@ body {
   transform: translateY(0);
 }
 
-/* ── Staggered Card Animations ── */
 .stagger-item {
   opacity: 0;
   transform: translateY(30px);
@@ -250,7 +240,6 @@ body {
   transform: translateY(0);
 }
 
-/* ── Floating Orb ── */
 .hero-gradient-orb {
   position: absolute;
   border-radius: 50%;
@@ -259,7 +248,6 @@ body {
   animation: float 8s ease-in-out infinite;
 }
 
-/* ── Mesh Gradient Background ── */
 .mesh-gradient {
   background:
     radial-gradient(at 20% 30%, rgba(92, 168, 210, 0.08) 0%, transparent 50%),
@@ -267,7 +255,6 @@ body {
     radial-gradient(at 50% 80%, rgba(92, 168, 210, 0.04) 0%, transparent 50%);
 }
 
-/* ── Icon Box Glow ── */
 .icon-box {
   position: relative;
   transition: all 0.4s ease;
@@ -287,7 +274,6 @@ body {
   opacity: 0.2;
 }
 
-/* ── Number Badge ── */
 .number-badge {
   font-family: "Syne", sans-serif;
   font-size: 80px;
@@ -301,7 +287,6 @@ body {
   user-select: none;
 }
 
-/* ── Feature Badge ── */
 .feature-badge {
   display: inline-flex;
   align-items: center;
@@ -320,7 +305,6 @@ body {
   color: var(--primary);
 }
 
-/* ── Animations ── */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
@@ -371,7 +355,6 @@ body {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ── Stat Number ── */
 .stat-number {
   font-family: "Syne", sans-serif;
   font-size: 56px;
@@ -379,7 +362,6 @@ body {
   line-height: 1;
 }
 
-/* ── Nav Links ── */
 .nav-link-hero {
   color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s ease;
@@ -395,7 +377,6 @@ body {
   color: var(--primary);
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .stat-number {
     font-size: 36px;

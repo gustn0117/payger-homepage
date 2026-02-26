@@ -63,9 +63,7 @@ export default function Roadmap() {
           </p>
         </div>
 
-        {/* Vertical Timeline */}
         <div ref={cardsRef} className="relative">
-          {/* Center Line */}
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2" style={{ background: "rgba(92,168,210,0.12)" }}>
             <div
               className="w-full rounded-full"
@@ -86,7 +84,6 @@ export default function Roadmap() {
                   className={`stagger-item ${visibleItems.includes(i) ? "visible" : ""} relative lg:flex items-center ${i > 0 ? "lg:mt-[-20px]" : ""}`}
                   style={{ minHeight: 160 }}
                 >
-                  {/* Desktop: alternating sides */}
                   <div className={`hidden lg:block w-1/2 ${isLeft ? "pr-12 text-right" : "pl-12 order-2"}`}>
                     <div className={`card-hover p-7 rounded-[20px] bg-white inline-block ${isLeft ? "ml-auto" : "mr-auto"} max-w-[380px] w-full`}>
                       <div className="flex items-center gap-3 mb-3" style={{ flexDirection: isLeft ? "row-reverse" : "row" }}>
@@ -112,7 +109,6 @@ export default function Roadmap() {
                     </div>
                   </div>
 
-                  {/* Center dot */}
                   <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white items-center justify-center z-10"
                     style={{
                       border: visibleItems.includes(i) ? "2px solid #5CA8D2" : "2px solid rgba(92,168,210,0.2)",
@@ -123,10 +119,8 @@ export default function Roadmap() {
                     <span className="text-xs font-extrabold text-gradient">{i + 1}</span>
                   </div>
 
-                  {/* Empty other side for desktop */}
                   <div className={`hidden lg:block w-1/2 ${isLeft ? "order-2" : ""}`} />
 
-                  {/* Mobile card */}
                   <div className="lg:hidden card-hover p-7 rounded-[20px] bg-white relative overflow-hidden">
                     <div className="flex items-center gap-3 mb-3">
                       <div

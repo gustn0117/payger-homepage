@@ -31,7 +31,6 @@ export default function Contact() {
       className="py-[120px] px-6 relative overflow-hidden"
       style={{ background: "linear-gradient(135deg, #5CA8D2 0%, #4A9BC7 50%, #3d8ab0 100%)" }}
     >
-      {/* Background decoration */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -52,9 +51,7 @@ export default function Contact() {
           ref={ref}
           className={`animate-in ${isVisible ? "visible" : ""}`}
         >
-          {/* Full-width split layout */}
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
-            {/* Left - Text */}
             <div className="flex-1 max-lg:text-center">
               <h2 className="text-4xl max-md:text-[28px] font-extrabold mb-5 tracking-tight text-white leading-tight">
                 함께 성장할
@@ -66,7 +63,6 @@ export default function Contact() {
                 지금 바로 상담을 신청하고 귀사에 최적화된 결제 솔루션을 경험하세요.
               </p>
 
-              {/* Contact Methods */}
               <div className="flex flex-col gap-4 max-lg:items-center">
                 <a
                   href="mailto:overwrap0@gmail.com"
@@ -95,7 +91,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right - Contact Form */}
             <div className="flex-shrink-0 w-full lg:w-[420px]">
               <div
                 className="p-10 rounded-[28px] relative overflow-hidden"
@@ -106,7 +101,6 @@ export default function Contact() {
                   WebkitBackdropFilter: "blur(16px)",
                 }}
               >
-                {/* Decorative orbs */}
                 <div
                   className="absolute -top-[80px] -right-[80px] w-[200px] h-[200px] rounded-full"
                   style={{ background: "radial-gradient(circle, rgba(255,255,255,0.08), transparent)" }}

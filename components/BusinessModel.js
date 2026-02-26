@@ -46,7 +46,6 @@ export default function BusinessModel() {
           </p>
         </div>
 
-        {/* Side-by-side with visual emphasis */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
           {models.map((item, i) => {
             const cardRef = i === 0 ? leftRef : rightRef;
@@ -57,12 +56,10 @@ export default function BusinessModel() {
                 ref={cardRef}
                 className={`animate-in ${cardVisible ? "visible" : ""} card-hover p-10 rounded-[24px] bg-white relative overflow-hidden`}
               >
-                {/* Large number background */}
                 <div className="absolute -top-4 -right-2 text-[120px] font-extrabold leading-none text-text-main/[0.03] pointer-events-none" style={{ fontFamily: "Syne, sans-serif" }}>
                   {String(i + 1).padStart(2, "0")}
                 </div>
 
-                {/* Top gradient line */}
                 <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: `linear-gradient(90deg, ${item.accentColor}, transparent)` }} />
 
                 <div className="relative z-10">

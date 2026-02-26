@@ -55,7 +55,6 @@ function ServiceRow({ service, reversed }) {
       ref={ref}
       className={`animate-in ${isVisible ? "visible" : ""} flex flex-col ${reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-12 lg:gap-20`}
     >
-      {/* Image Side */}
       <div className="flex-1 w-full">
         <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
           <img
@@ -85,7 +84,6 @@ function ServiceRow({ service, reversed }) {
         </div>
       </div>
 
-      {/* Text Side */}
       <div className="flex-1">
         <div className="icon-box w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ background: "rgba(92,168,210,0.1)" }}>
           {service.icon}

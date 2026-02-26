@@ -58,7 +58,6 @@ export default function Hero() {
         background: "linear-gradient(135deg, #5CA8D2 0%, #4A9BC7 40%, #3d8ab0 100%)",
       }}
     >
-      {/* Grid Pattern - visible */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -70,7 +69,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Large Wireframe Crystal - Center Right */}
       <svg
         viewBox="0 0 600 600"
         className="absolute pointer-events-none"
@@ -104,7 +102,6 @@ export default function Hero() {
         <circle cx="160" cy="180" r="2.5" fill="white" fillOpacity="0.2" />
       </svg>
 
-      {/* Rotating Ring - Left side */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -120,7 +117,6 @@ export default function Hero() {
         </svg>
       </div>
 
-      {/* Dot Grid - Bottom Left */}
       <svg
         className="absolute pointer-events-none"
         style={{ bottom: "6%", left: "2%", opacity: 0.15 }}
@@ -133,7 +129,6 @@ export default function Hero() {
         )}
       </svg>
 
-      {/* Circuit / Network Lines - Top Left */}
       <svg
         className="absolute pointer-events-none"
         style={{ top: "10%", left: "8%", opacity: 0.12 }}
@@ -148,7 +143,6 @@ export default function Hero() {
         <circle cx="230" cy="70" r="3" fill="white" fillOpacity="0.3" />
       </svg>
 
-      {/* Hexagon Cluster - Top Right */}
       <svg
         className="absolute pointer-events-none"
         style={{ top: "8%", right: "25%", opacity: 0.1 }}
@@ -159,7 +153,6 @@ export default function Hero() {
         <polygon points="100,55 125,68 125,92 100,105 75,92 75,68" strokeWidth="0.3" />
       </svg>
 
-      {/* Plus Signs scattered */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ opacity: 0.1 }}>
         {[
           { x: "12%", y: "25%" }, { x: "85%", y: "18%" }, { x: "75%", y: "75%" },
@@ -173,7 +166,6 @@ export default function Hero() {
         ))}
       </svg>
 
-      {/* Floating Particles */}
       {particles.map((p, i) => (
         <div
           key={i}
@@ -190,7 +182,6 @@ export default function Hero() {
         />
       ))}
 
-      {/* Gradient Orbs */}
       <div
         className="hero-gradient-orb"
         style={{
@@ -207,10 +198,8 @@ export default function Hero() {
         }}
       />
 
-      {/* Split Layout */}
       <div className="max-w-[1200px] mx-auto w-full relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-          {/* Left - Text Content */}
           <div className="flex-1 max-lg:text-center">
             <div
               className="inline-flex items-center gap-2.5 py-2.5 px-6 rounded-full text-sm text-white/85 font-medium mb-8"
@@ -276,13 +265,11 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - Service Overview Cards */}
           <div
             className="flex-shrink-0 w-full lg:w-[440px]"
             style={{ animation: "fadeUp 1s ease 0.7s both" }}
           >
             <div className="grid grid-cols-1 gap-4">
-              {/* Service cards */}
               {[
                 {
                   icon: (<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></svg>),
